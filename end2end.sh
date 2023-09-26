@@ -1,8 +1,8 @@
-utput=snap/sp/baseline
+output=snap/sp/baseline
 PYTHONPATH=$PYTHONPATH:./src \
 python -m torch.distributed.launch \
     --nproc_per_node=$1 \
-    src/vrd_caption.py \
+    VLModel/src/vrd_caption.py \
         --distributed --multiGPU \
         --train karpathy_train \
         --valid karpathy_val \

@@ -1,4 +1,3 @@
-
 output=snap/sp/baseline
 PYTHONPATH=$PYTHONPATH:./src \
 python -m torch.distributed.launch \
