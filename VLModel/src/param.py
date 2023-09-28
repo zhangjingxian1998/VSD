@@ -165,6 +165,7 @@ def parse_args(parse=True, **optional_kwargs):
 
     # VRD
     parser.add_argument('--use_gold_rels', type=bool, default=False)
+    parser.add_argument('--use_golden', action='store_true')
 
     # Parse the arguments.
     if parse:

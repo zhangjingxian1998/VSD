@@ -125,24 +125,24 @@ class Trainer(TrainerBase):
             best_valid = 0.
             best_epoch = 0
 
-            if not self.wandb_initialized:
+            # if not self.wandb_initialized:
 
-                if 't5' in self.args.backbone:
-                    project_name = "VLT5_VRDCaption"
-                elif 'bart' in self.args.backbone:
-                    project_name = "VLBart_VRDCaption"
+            #     if 't5' in self.args.backbone:
+            #         project_name = "VLT5_VRDCaption"
+            #     elif 'bart' in self.args.backbone:
+            #         project_name = "VLBart_VRDCaption"
 
-                wandb.init(project=project_name)
-                wandb.run.name = self.args.run_name
-                wandb.config.update(self.args)
-                wandb.watch(self.model)
+                # wandb.init(project=project_name)
+            #     wandb.run.name = self.args.run_name
+            #     wandb.config.update(self.args)
+            #     wandb.watch(self.model)
 
-                src_dir = Path(__file__).resolve().parent
-                base_path = str(src_dir.parent)
-                src_dir = str(src_dir)
-                wandb.save(os.path.join(src_dir + "/*.py"), base_path=base_path)
+            #     src_dir = Path(__file__).resolve().parent
+            #     base_path = str(src_dir.parent)
+            #     src_dir = str(src_dir)
+            #     wandb.save(os.path.join(src_dir + "/*.py"), base_path=base_path)
 
-                self.wandb_initialized = True
+                # self.wandb_initialized = True
 
         if self.args.distributed:
             dist.barrier()
@@ -284,15 +284,15 @@ class Trainer(TrainerBase):
                 log_str += "\nEpoch %d: Valid CIDEr %0.4f" % (epoch, valid_score)
                 log_str += "\nEpoch %d: Best CIDEr %0.4f\n" % (best_epoch, best_valid)
 
-                wandb_log_dict = {}
-                wandb_log_dict['Train/Loss'] = epoch_results['loss'] / len(self.train_loader)
+                # wandb_log_dict = {}
+                # wandb_log_dict['Train/Loss'] = epoch_results['loss'] / len(self.train_loader)
 
-                for score_name, score in valid_results.items():
-                    wandb_log_dict[f'Valid/{score_name}'] = score
+                # for score_name, score in valid_results.items():
+                #     wandb_log_dict[f'Valid/{score_name}'] = score
 
-                wandb_log_dict[f'Valid/best_epoch'] = best_epoch
+                # wandb_log_dict[f'Valid/best_epoch'] = best_epoch
 
-                wandb.log(wandb_log_dict, step=epoch)
+                # wandb.log(wandb_log_dict, step=epoch)
 
                 print(log_str)
 
@@ -306,15 +306,15 @@ class Trainer(TrainerBase):
             best_path = os.path.join(self.args.output, 'BEST')
             self.load(best_path)
 
-            wandb.save(best_path, base_path=self.args.output)
-            print(f'\nUploaded checkpoint {best_epoch}', best_path)
+            # wandb.save(best_path, base_path=self.args.output)
+            # print(f'\nUploaded checkpoint {best_epoch}', best_path)
 
             test_results = self.evaluate(self.test_loader, one_step_dec=one_step_dec)
 
-            wandb_log_dict = {}
-            for score_name, score in test_results.items():
-                wandb_log_dict[f'Test/{score_name}'] = score
-            wandb.log(wandb_log_dict, step=epoch)
+            # wandb_log_dict = {}
+            # for score_name, score in test_results.items():
+            #     wandb_log_dict[f'Test/{score_name}'] = score
+            # wandb.log(wandb_log_dict, step=epoch)
 
             log_str = 'Test set results\n'
             log_str += pformat(test_results)
@@ -352,12 +352,14 @@ class Trainer(TrainerBase):
                         batch,
                         beam_with_prompt,
                         one_step_dec=one_step_dec,
+                        golden=args.use_golden,
                         **gen_kwargs)
                 else:
                     results = self.model.test_step(
                         batch,
                         beam_with_prompt,
                         one_step_dec=one_step_dec,
+                        golden=args.use_golden,
                         **gen_kwargs)
 
                 predictions.extend(results['pred'])
@@ -443,7 +445,7 @@ class Trainer(TrainerBase):
                     results = self.model.test_step(
                         batch,
                         beam_with_prompt,
-                        one_step_decode=one_step
+                        one_step_decode=one_step_dec,
                         **gen_kwargs)
 
                 img_id.extend(batch['img_id'])
@@ -583,7 +585,11 @@ def main_worker(gpu, args):
         test_loader = None
 
     trainer = Trainer(args, train_loader, val_loader, test_loader, train=True)
-    trainer.train(one_step_dec=False)
+    if args.test_only:
+        res = trainer.evaluate(test_loader)
+        print(res)
+    else:
+        trainer.train(one_step_dec=False)
     # res = trainer.evaluate(test_loader)
     # trainer.only_predict(one_step=True)
     # print(res)

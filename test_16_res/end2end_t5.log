@@ -1,0 +1,127 @@
+Configurations
+{'RefCOCO_BUTD': False,
+ 'RefCOCO_GT': False,
+ 'adam_beta1': 0.9,
+ 'adam_beta2': 0.999,
+ 'adam_eps': 1e-06,
+ 'answer_normalize': False,
+ 'backbone': 't5-base',
+ 'batch_size': 80,
+ 'beam_with_prompt': False,
+ 'caption_cocoonly': True,
+ 'caption_only': False,
+ 'classifier': False,
+ 'clip_grad_norm': 5.0,
+ 'coco_only': False,
+ 'comment': '',
+ 'distributed': True,
+ 'do_lower_case': False,
+ 'dropout': 0.1,
+ 'dry': False,
+ 'epochs': 20,
+ 'feat_dim': 2048,
+ 'fp16': False,
+ 'from_scratch': False,
+ 'gen_max_length': 20,
+ 'gradient_accumulation_steps': 1,
+ 'ground_upsample': 1,
+ 'ground_weight': 1,
+ 'individual_vis_layer_norm': True,
+ 'itm_cocoonly': True,
+ 'load': 'weights/end2end_t5_b16/BEST',
+ 'local_rank': 0,
+ 'log_train_accuracy': False,
+ 'losses': 'lm,obj,attr,feat',
+ 'lr': 5e-05,
+ 'max_n_boxes': 36,
+ 'max_text_length': 40,
+ 'multiGPU': True,
+ 'multitask_sampling': 'roundrobin',
+ 'n_boxes': 36,
+ 'n_ground': 1,
+ 'no_prefix': False,
+ 'num_beams': 5,
+ 'num_workers': 4,
+ 'obj_mask_rate': 0.15,
+ 'optim': 'adamw',
+ 'optimizer': 'adamw',
+ 'oscar_tags': False,
+ 'output': 'weights/end2end_t5',
+ 'pos_dim': 4,
+ 'prefix': None,
+ 'raw_label': False,
+ 'seed': 9595,
+ 'share_vis_lang_layer_norm': False,
+ 'shuffle_boxes': False,
+ 'single_vqa_prefix': False,
+ 'submit': False,
+ 'tasks': '',
+ 'test': 'test',
+ 'test_answerable': False,
+ 'test_only': True,
+ 'tokenizer': None,
+ 'train': 'train',
+ 'train_topk': -1,
+ 'use_gold_rels': False,
+ 'use_golden': False,
+ 'use_vis_layer_norm': True,
+ 'use_vis_order_embedding': True,
+ 'use_vision': True,
+ 'valid': 'val',
+ 'valid_batch_size': 100,
+ 'valid_topk': -1,
+ 'warmup_ratio': 0.1,
+ 'weight_decay': 0.01,
+ 'word_mask_rate': 0.15,
+ 'world_size': 2}
+Process Launching at GPU 0
+Building train loader at GPU 0
+Data source:  train
+train has f'0' images
+Loaded 116791 data from train
+# all sentences: 116791
+Building val loader at GPU 0
+Data source:  val
+val has f'2927' images
+Loaded 2927 data from val
+# all sentences: 2927
+# len val loader: 30
+Building test loader at GPU 0
+Data source:  test
+test has f'5855' images
+Loaded 5855 data from test
+# all sentences: 5855
+Building Model at GPU 0
+Model loaded from  weights/end2end_t5_b16/BEST.pth
+<All keys matched successfully>
+Model Launching at GPU 0
+Building Optimizer
+Batch per epoch: 1460
+Total Iters: 29200
+Warmup ratio: 0.1
+Warm up Iters: 2920
+It took 2.4s
+Prediction:   0%|                                                                                | 0/59 [00:00<?, ?it/s]Prediction:   2%|█▏                                                                      | 1/59 [00:05<05:11,  5.38s/it]Prediction:   3%|██▍                                                                     | 2/59 [00:09<04:37,  4.87s/it]Prediction:   5%|███▋                                                                    | 3/59 [00:14<04:19,  4.64s/it]Prediction:   7%|████▉                                                                   | 4/59 [00:18<04:08,  4.53s/it]Prediction:   8%|██████                                                                  | 5/59 [00:23<04:02,  4.50s/it]Prediction:  10%|███████▎                                                                | 6/59 [00:27<03:54,  4.42s/it]Prediction:  12%|████████▌                                                               | 7/59 [00:31<03:50,  4.43s/it]Prediction:  14%|█████████▊                                                              | 8/59 [00:36<03:48,  4.48s/it]Prediction:  15%|██████████▉                                                             | 9/59 [00:40<03:46,  4.52s/it]Prediction:  17%|████████████                                                           | 10/59 [00:45<03:41,  4.51s/it]Prediction:  19%|█████████████▏                                                         | 11/59 [00:50<03:38,  4.54s/it]Prediction:  20%|██████████████▍                                                        | 12/59 [00:54<03:29,  4.46s/it]Prediction:  22%|███████████████▋                                                       | 13/59 [00:58<03:25,  4.47s/it]Prediction:  24%|████████████████▊                                                      | 14/59 [01:03<03:21,  4.48s/it]Prediction:  25%|██████████████████                                                     | 15/59 [01:08<03:21,  4.58s/it]Prediction:  27%|███████████████████▎                                                   | 16/59 [01:12<03:18,  4.61s/it]Prediction:  29%|████████████████████▍                                                  | 17/59 [01:17<03:11,  4.56s/it]Prediction:  31%|█████████████████████▋                                                 | 18/59 [01:21<03:04,  4.51s/it]Prediction:  32%|██████████████████████▊                                                | 19/59 [01:26<02:59,  4.49s/it]Prediction:  34%|████████████████████████                                               | 20/59 [01:30<02:53,  4.46s/it]Prediction:  36%|█████████████████████████▎                                             | 21/59 [01:35<02:50,  4.48s/it]Prediction:  37%|██████████████████████████▍                                            | 22/59 [01:39<02:40,  4.34s/it]Prediction:  39%|███████████████████████████▋                                           | 23/59 [01:43<02:35,  4.33s/it]Prediction:  41%|████████████████████████████▉                                          | 24/59 [01:47<02:31,  4.32s/it]Prediction:  42%|██████████████████████████████                                         | 25/59 [01:52<02:27,  4.35s/it]Prediction:  44%|███████████████████████████████▎                                       | 26/59 [01:56<02:24,  4.37s/it]Prediction:  46%|████████████████████████████████▍                                      | 27/59 [02:00<02:21,  4.42s/it]Prediction:  47%|█████████████████████████████████▋                                     | 28/59 [02:05<02:17,  4.44s/it]Prediction:  49%|██████████████████████████████████▉                                    | 29/59 [02:09<02:10,  4.36s/it]Prediction:  51%|████████████████████████████████████                                   | 30/59 [02:14<02:08,  4.44s/it]Prediction:  53%|█████████████████████████████████████▎                                 | 31/59 [02:18<02:06,  4.50s/it]Prediction:  54%|██████████████████████████████████████▌                                | 32/59 [02:23<02:01,  4.49s/it]Prediction:  56%|███████████████████████████████████████▋                               | 33/59 [02:27<01:56,  4.47s/it]Prediction:  58%|████████████████████████████████████████▉                              | 34/59 [02:32<01:51,  4.47s/it]Prediction:  59%|██████████████████████████████████████████                             | 35/59 [02:36<01:47,  4.48s/it]Prediction:  61%|███████████████████████████████████████████▎                           | 36/59 [02:41<01:42,  4.47s/it]Prediction:  63%|████████████████████████████████████████████▌                          | 37/59 [02:45<01:38,  4.48s/it]Prediction:  64%|█████████████████████████████████████████████▋                         | 38/59 [02:50<01:34,  4.49s/it]Prediction:  66%|██████████████████████████████████████████████▉                        | 39/59 [02:54<01:30,  4.53s/it]Prediction:  68%|████████████████████████████████████████████████▏                      | 40/59 [02:59<01:25,  4.52s/it]Prediction:  69%|█████████████████████████████████████████████████▎                     | 41/59 [03:03<01:20,  4.50s/it]Prediction:  71%|██████████████████████████████████████████████████▌                    | 42/59 [03:08<01:16,  4.50s/it]Prediction:  73%|███████████████████████████████████████████████████▋                   | 43/59 [03:12<01:11,  4.49s/it]Prediction:  75%|████████████████████████████████████████████████████▉                  | 44/59 [03:16<01:05,  4.39s/it]Prediction:  76%|██████████████████████████████████████████████████████▏                | 45/59 [03:21<01:02,  4.43s/it]Prediction:  78%|███████████████████████████████████████████████████████▎               | 46/59 [03:25<00:57,  4.45s/it]Prediction:  80%|████████████████████████████████████████████████████████▌              | 47/59 [03:30<00:52,  4.41s/it]Prediction:  81%|█████████████████████████████████████████████████████████▊             | 48/59 [03:34<00:48,  4.43s/it]Prediction:  83%|██████████████████████████████████████████████████████████▉            | 49/59 [03:39<00:44,  4.45s/it]Prediction:  85%|████████████████████████████████████████████████████████████▏          | 50/59 [03:43<00:40,  4.46s/it]Prediction:  86%|█████████████████████████████████████████████████████████████▎         | 51/59 [03:48<00:35,  4.45s/it]Prediction:  88%|██████████████████████████████████████████████████████████████▌        | 52/59 [03:52<00:31,  4.50s/it]Prediction:  90%|███████████████████████████████████████████████████████████████▊       | 53/59 [03:58<00:29,  4.88s/it]Prediction:  92%|████████████████████████████████████████████████████████████████▉      | 54/59 [04:02<00:23,  4.74s/it]Prediction:  93%|██████████████████████████████████████████████████████████████████▏    | 55/59 [04:07<00:18,  4.71s/it]Prediction:  95%|███████████████████████████████████████████████████████████████████▍   | 56/59 [04:12<00:13,  4.62s/it]Prediction:  97%|████████████████████████████████████████████████████████████████████▌  | 57/59 [04:16<00:09,  4.62s/it]Prediction:  98%|█████████████████████████████████████████████████████████████████████▊ | 58/59 [04:21<00:04,  4.65s/it]Prediction: 100%|███████████████████████████████████████████████████████████████████████| 59/59 [04:24<00:00,  4.07s/it]Prediction: 100%|███████████████████████████████████████████████████████████████████████| 59/59 [04:24<00:00,  4.48s/it]
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.nustaq.serialization.FSTClazzInfo (file:/home/zhangjx/anaconda3/envs/VSD/lib/python3.7/site-packages/language_evaluation/coco_caption_py3/pycocoevalcap/spice/lib/fst-2.47.jar) to field java.lang.String.value
+WARNING: Please consider reporting this to the maintainers of org.nustaq.serialization.FSTClazzInfo
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+Parsing reference captions
+Parsing test captions
+Initiating Stanford parsing pipeline
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator tokenize
+[main] INFO edu.stanford.nlp.pipeline.TokenizerAnnotator - TokenizerAnnotator: No tokenizer type provided. Defaulting to PTBTokenizer.
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ssplit
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator parse
+[main] INFO edu.stanford.nlp.parser.common.ParserGrammar - Loading parser from serialized file edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz ... 
+done [0.4 sec].
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator lemma
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ner
+Loading classifier from edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz ... done [1.1 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.muc.7class.distsim.crf.ser.gz ... done [0.6 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz ... done [0.6 sec].
+Threads( StanfordCoreNLP ) [4.554 seconds]
+Warning: Nashorn engine is planned to be removed from a future JDK release
+SPICE evaluation took: 11.81 s
+{'Bleu_1': 0.8054178689704696, 'Bleu_2': 0.715205894507878, 'Bleu_3': 0.6248228815249955, 'Bleu_4': 0.5476533948362403, 'METEOR': 0.431066924464549, 'ROUGE_L': 0.7908924409925933, 'CIDEr': 4.8146728989796435, 'SPICE': 0.6858695517502866, 'vrd_acc': 0.5327503974562798}

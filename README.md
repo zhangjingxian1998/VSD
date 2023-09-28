@@ -53,18 +53,53 @@ python -c "import language_evaluation; language_evaluation.download('coco')"
 
 
 ## Pretrained Models
-- pretrained VL-BART and VL-T5 are provided by [1]
-- Download `snap/` from [Google Drive](https://drive.google.com/drive/folders/1_SBj4sZ0gUqfBon1gFBiNRAmfHv5w_ph?usp=sharing)
+- pretrained VL-BART and VL-T5 are provided by [VLT5](https://github.com/j-min/VL-T5)
+- Download `snap/` from [Google Drive](https://drive.google.com/drive/folders/1_SBj4sZ0gUqfBon1gFBiNRAmfHv5w_ph?usp=sharing) or [feijiang](https://aistudio.baidu.com/datasetdetail/241378)
+## Dataset
+- This dataset is create from [VG](https://homes.cs.washington.edu/~ranjay/visualgenome/api.html) and [SpatialSense](https://zenodo.org/record/8104370) images by running
 ```bash
-gdrive download 1_SBj4sZ0gUqfBon1gFBiNRAmfHv5w_ph --recursive
+python feature_extraction/sp_proposal.py
+or 
+python feature_extraction/vg_proposal.py
 ```
-
-## Run
+- All you nedd to do is put all of the VG and SpatialSense images in a same folder
+- the final .h5 file can be downloaded from [google]() and [feijiang]()
+- put the .h5 file in the dataset folder and named it vsd_boxes36.h5
+## train
+- If your network can't connect to huggingface by url, you may need to download the [facebook/bart-base](https://huggingface.co/facebook/bart-base) and [t5-base](https://huggingface.co/t5-base) in your local.
 ```bash
-bash ./baseline.sh gpu_num
-bash ./end2end.sh gpu_num
+bash train_b16.sh num_gpu
+bash train_b80.sh num_gpu
 ```
+- The weights can be downloaded from [gdrive]() and [feijiang]()
+## test
+```bash
+bash test_b16.sh 1 --use_golden
+bash test_b80.sh 1 --use_golden
+```
+- The result files will save at test_16_res and test_80_res folder.
 
+## result
+### batch size 80
+|  Model| BLEU-4  | METEOR  | ROUGE | CIDEr| SPICE| Acc|
+|  ---- | ----  | ----  | ----  | ----  | ----  | ----  |
+| VLBART | 54.52 |  43.10 | 78.79 | 482.64 | 68.95 | - |
+| VLBART-end2end  | 52.90 |  42.15 | 77.60 | 469.65 | 67.64 | 52.22 |
+| VLBART-end2end-golden  | 71.94 |  50.93 | 87.17 | 571.46 | 76.66 | 52.22 |
+||
+| VLT5  | 54.72 |  43.26 | 79.04 | 484.09 | 68.95 | - |
+| VLT5-end2end  | 53.88 |  42.88 | 78.98 | 481.18 | 68.88 | 54.38 |
+| VLT5-end2end-golden  | 72.24 |  51.21 | 87.92 | 576.20 | 76.95 | 54.38 |
+### batch size 16
+|  Model| BLEU-4  | METEOR  | ROUGE | CIDEr| SPICE| Acc|
+|  ---- | ----  | ----  | ----  | ----  | ----  | ----  |
+| VLBART | 52.73 |  42.35 | 77.91 | 471.97 | 67.74 | - |
+| VLBART-end2end  | 53.19 |  42.10 | 77.76 | 470.02 | 68.06 | 52.81 |
+| VLBART-end2end-golden  | 71.77 |  50.75 | 87.28 | 568.66 | 76.80 | 52.81 |
+||
+| VLT5  | 54.44 |  43.03 | 78.82 | 484.02 | 68.92 | - |
+| VLT5-end2end  | 54.76 |  43.10 | 79.08 | 481.46 | 68.58 | 53.27 |
+| VLT5-end2end-golden  | 73.49 |  51.77 | 88.48 | 582.18 | 77.48 | 53.27 |
 ## Acknowledgement
 
 This repo is adapted from [VLT5](https://github.com/j-min/VL-T5).

@@ -19,7 +19,7 @@ from tokenization import VLT5TokenizerFast
 
 project_dir = Path(__file__).resolve().parent.parent  # VLT5
 workspace_dir = project_dir.parent
-dataset_dir = workspace_dir.joinpath('datasets/').resolve()
+dataset_dir = workspace_dir.joinpath('dataset/').resolve()
 sp_dir = dataset_dir.joinpath('sp3000')
 sp_img_dir = sp_dir.joinpath('images/')
 sp_feature_dir = sp_dir.joinpath('features')
@@ -179,11 +179,11 @@ class COCOCaptionFineTuneDataset(Dataset):
 
             f = self.source_to_h5[source]
 
-            if isinstance(f, Path):
-                # path = self.data_source_to_h5_path[source]
-                f = h5py.File(f, 'r')
-                # self.split_to_h5_features[split_i] = f
-                self.source_to_h5[source] = f
+            # if isinstance(f, Path):
+            #     # path = self.data_source_to_h5_path[source]
+            #     f = h5py.File(f, 'r')
+            #     # self.split_to_h5_features[split_i] = f
+            #     self.source_to_h5[source] = f
 
             # Normalize the boxes (to 0 ~ 1)
             img_h = f[f'{img_id}/img_h'][()]
@@ -406,7 +406,8 @@ class VRDCaptionFineTuneDataset(Dataset):
                     vg_classes.append(obj.split(',')[0].lower().strip())
             self.vg_classes = vg_classes
 
-        data_info_path = dataset_dir.joinpath(f'spall/{split}.json')
+        # data_info_path = dataset_dir.joinpath(f'spall/{split}.json')
+        data_info_path = dataset_dir.joinpath(f'VSDv1/{split}.json')
         with open(data_info_path) as f:
             dataset = json.load(f)
 
@@ -456,7 +457,10 @@ class VRDCaptionFineTuneDataset(Dataset):
             print("# all sentences:", len(self.data))
 
         if self.args.max_n_boxes == 36:
-            self.source_to_h5 = sp_dir.joinpath('features').joinpath('vrd_boxes36.h5')
+            self.source_to_h5 = dataset_dir.joinpath('vsd_boxes36.h5')
+            if isinstance(self.source_to_h5, Path):
+                self.source_to_h5 = h5py.File(self.source_to_h5, 'r')
+            # self.source_to_h5 = sp_dir.joinpath('features').joinpath('vrd_boxes36.h5')
 
 
     def __len__(self):
@@ -475,12 +479,6 @@ class VRDCaptionFineTuneDataset(Dataset):
             out_dict['img_id'] = img_id
 
             f = self.source_to_h5
-
-            if isinstance(f, Path):
-                # path = self.data_source_to_h5_path[source]
-                f = h5py.File(f, 'r')
-                # self.split_to_h5_features[split_i] = f
-                self.source_to_h5 = f
 
             # Normalize the boxes (to 0 ~ 1)
             img_h = f[f'{img_id}/img_h'][()]
