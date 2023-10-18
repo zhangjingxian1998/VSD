@@ -22,15 +22,16 @@ Please go into [VLT5](https://github.com/j-min/VL-T5) and follow the README ther
 ## Setup
 ```bash
 # Create python environment (optional)
-conda create -n vsd python=3.7
+conda create -n vsd python=3.10
 source activate vsd
 
 # Install python dependencies
 pip install -r requirements.txt
 
-# For captioning evaluation
-python -c "import language_evaluation; language_evaluation.download('coco')"
 ```
+安装[detectorn2==0.5](https://github.com/facebookresearch/detectron2/releases/tag/v0.5)
+
+安装[language-evaluation](https://github.com/j-min/language-evaluation)
 
 ## Code structure
 ```bash
