@@ -1,3 +1,4 @@
+https://www.zhihu.com/question/304798594
 # BLEU-N
 用于机器翻译任务评价，常见有BLEU-1，BLEU-2，BLEU-3，BLEU-4。其中的数字表示连续单词的个数。BLEU-1衡量的是单词级别的准确性，高阶BLEU衡量的句子流畅性。
 

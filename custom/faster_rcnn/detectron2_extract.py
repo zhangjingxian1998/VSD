@@ -224,8 +224,7 @@ def extract(output_fname, dataloader, desc):
                     print(e)
                     continue
 
-def predict(img, device):
-    detector = build_model()
+def predict(img, detector):
     instances, features = doit(img, detector)
     boxes = instances.pred_boxes
 

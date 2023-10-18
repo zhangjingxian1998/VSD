@@ -1,4 +1,5 @@
-torch==1.6.0
+# python=3.10
+torch==1.8 # 为了detectron2安装最低要求
 transformers==4.2.1
 sentencepiece
 h5py
@@ -9,6 +10,9 @@ pandas
 matplotlib
 pyyaml
 sacrebleu
-torchvision==0.7.0
+torchvision
 wget
-git+git://github.com/j-min/language-evaluation@master
+#git+git://github.com/j-min/language-evaluation@master
+#detectron2==0.5 # 0.6会有一些问题
+# 如果detectron2遇到CAFFI问题，https://github.com/airsplay/py-bottom-up-attention/issues/4最后一个回答
+pillow==8.4.0

@@ -62,7 +62,7 @@ python feature_extraction/sp_proposal.py
 or 
 python feature_extraction/vg_proposal.py
 ```
-- All you nedd to do is put all of the VG and SpatialSense images in a same folder
+- All you need to do is put all of the VG and SpatialSense images in a same folder
 - the final .h5 file can be downloaded from [google]() and [feijiang]()
 - put the .h5 file in the dataset folder and named it vsd_boxes36.h5
 ## train
@@ -70,6 +70,9 @@ python feature_extraction/vg_proposal.py
 ```bash
 bash train_b16.sh num_gpu
 bash train_b80.sh num_gpu
+# or if yout want to train one of them
+bash test_batch_80/baseline_bart.sh num_gpu
+# others are same
 ```
 - The weights can be downloaded from [gdrive]() and [feijiang]()
 ## test
@@ -90,6 +93,9 @@ bash test_b80.sh 1 --use_golden
 | VLT5  | 54.72 |  43.26 | 79.04 | 484.09 | 68.95 | - |
 | VLT5-end2end  | 53.88 |  42.88 | 78.98 | 481.18 | 68.88 | 54.38 |
 | VLT5-end2end-golden  | 72.24 |  51.21 | 87.92 | 576.20 | 76.95 | 54.38 |
+| VLT5-end2end-onestep-test-false  | 53.71 |  42.76 | 78.49 | 476.68 | 68.31 | 52.41 |
+| VLT5-end2end-onestep-test-true  | 53.82 |  42.75 | 78.58 | 477.96 | 68.58 | 52.41 |
+| VLT5-end2end-onestep-golden  | 52.85 |  42.45 | 78.18 | 472.35 | 68.00 | 52.41 |
 ### batch size 16
 |  Model| BLEU-4  | METEOR  | ROUGE | CIDEr| SPICE| Acc|
 |  ---- | ----  | ----  | ----  | ----  | ----  | ----  |
@@ -103,6 +109,26 @@ bash test_b80.sh 1 --use_golden
 ## Acknowledgement
 
 This repo is adapted from [VLT5](https://github.com/j-min/VL-T5).
+
+## 训练和测试注意事项
+
+训练时分为3种
+
+1、baseline，使用的input_id为'sub obj'
+
+2、train(one_step_dec=True)，使用的input_id为'sub <extral_id_0> obj'
+
+3、train(one_step_dec=False)，使用的input_id为'sub <extral_id_i> obj'其中i为方位词所对应的序号
+
+论文所属参数使用为第三种训练方式
+
+测试时分3种，
+
+1、golden=False,one_step_dec=True，测试时输入input_id为'sub <extral_id_0> obj'
+
+2、golden=False,one_step_dec=False，测试时输入input_id为'sub <extral_id_i> obj'，此处的i为模型预测方位词对应id
+
+3、golden=True，测试时输入input_id为'sub <extral_id_i> obj'，此处i为数据集中标注方位词对应id
 
 
 ## Reference

@@ -440,12 +440,14 @@ class Trainer(TrainerBase):
                         batch,
                         beam_with_prompt,
                         one_step_dec=one_step_dec,
+                        golden=args.use_golden,
                         **gen_kwargs)
                 else:
                     results = self.model.test_step(
                         batch,
                         beam_with_prompt,
                         one_step_decode=one_step_dec,
+                        golden=args.use_golden,
                         **gen_kwargs)
 
                 img_id.extend(batch['img_id'])
@@ -586,10 +588,13 @@ def main_worker(gpu, args):
 
     trainer = Trainer(args, train_loader, val_loader, test_loader, train=True)
     if args.test_only:
-        res = trainer.evaluate(test_loader)
-        print(res)
+        res = trainer.evaluate(test_loader,one_step_dec=False)
+        print('res_one_step_dec=false',res)
+        res = trainer.evaluate(test_loader,one_step_dec=True)
+        print('res_one_step_dec=true',res)
     else:
         trainer.train(one_step_dec=False)
+        # trainer.train(one_step_dec=True)
     # res = trainer.evaluate(test_loader)
     # trainer.only_predict(one_step=True)
     # print(res)
