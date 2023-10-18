@@ -3,3 +3,13 @@ dataset
 weights
 VLModel/snap
 VLModel/src/__pycache__
+detectron2
+language-evaluation
+备忘
+res.txt
+train.log
+.vscode
+dataset/VSDv1/test.json
+test_80_res
+test_16_res
+.gitignore
