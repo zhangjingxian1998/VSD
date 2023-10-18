@@ -129,22 +129,3 @@ This repo is adapted from [VLT5](https://github.com/j-min/VL-T5).
 2、golden=False,one_step_dec=False，测试时输入input_id为'sub <extral_id_i> obj'，此处的i为模型预测方位词对应id
 
 3、golden=True，测试时输入input_id为'sub <extral_id_i> obj'，此处i为数据集中标注方位词对应id
-
-
-## Reference
-Please cite our paper if you use our models or data in your project.
-
-```bibtex
-@inproceedings{zhao2022vsd,
-  title     = {Visual Spatial Description: Controlled Spatial-Oriented Image-to-Text
-               Generation},
-  author    = {Yu Zhao and
-               Jianguo Wei and
-               Zhichao Lin and
-               Yueheng Sun and
-               Meishan Zhang and
-               Min Zhang},
-  booktitle = {EMNLP},
-  year      = {2022}
-}
-```
