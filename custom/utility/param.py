@@ -3,8 +3,8 @@ import argparse
 def parse_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--load', type=str, default='/home/zhangjx/All_model/VSD/weights/end2end_t5_b80_<0>/BEST')
-    # parser.add_argument('--load', type=str, default='/home/zhangjx/All_model/VSD/weights/end2end_t5_b80/BEST')
+    # parser.add_argument('--load', type=str, default='/home/zhangjx/All_model/VSD/weights/end2end_t5_b80_<0>/BEST')
+    parser.add_argument('--load', type=str, default='/home/zhangjx/All_model/VSD/weights/end2end_t5_b80/BEST')
     parser.add_argument('--backbone', type=str, default='t5-base')
     parser.add_argument('--tokenizer', type=str, default='t5-base')
     parser.add_argument('--from_scratch', type=bool, default=False)

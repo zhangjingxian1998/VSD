@@ -13,3 +13,5 @@ dataset/VSDv1/test.json
 test_80_res
 test_16_res
 .gitignore
+*.zip
+*.log

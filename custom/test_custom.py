@@ -90,7 +90,7 @@ def caption(args, gen_kwargs, faster_rcnn, vsd, prefix, extral_id_0, predict_lis
 
         # vrd_predict = - predict_list.index(relation_word)  + vsd.tokenizer.convert_tokens_to_ids('<extra_id_1>')
         idx = predict_list.index(img[3]) + 1
-        input_token = ' '.join([prefix, img[1], extral_id_0, img[2]])
+        input_token = ' '.join([prefix, img[1], '<extra_id_0>', img[2]])
         input_token_golden = ' '.join([prefix, img[1], f'<extra_id_{idx}>', img[2]])
         input_ids = vsd.tokenizer.encode(
                             input_token,
@@ -106,7 +106,8 @@ def caption(args, gen_kwargs, faster_rcnn, vsd, prefix, extral_id_0, predict_lis
         s_box = box_dict[img_name][img[1]]
         o_box = box_dict[img_name][img[2]]
         input_ids_with_promt = predict_prompt(s_box, o_box, vsd, input_ids, feature, boxes)
-        
+        #########################################################################################
+        # <extra_id_0>
         output = vsd.model.generate(
                             input_ids=input_ids,
                             vis_inputs=(feature.unsqueeze(0), boxes.unsqueeze(0)),
@@ -117,6 +118,8 @@ def caption(args, gen_kwargs, faster_rcnn, vsd, prefix, extral_id_0, predict_lis
         generated_sents = vsd.tokenizer.batch_decode(output, skip_special_tokens=True)
         print('input_id:',generated_sents)
 
+        #########################################################################################
+        # 给定方位提示词
         output = vsd.model.generate(
                             input_ids=input_ids_golden,
                             vis_inputs=(feature.unsqueeze(0), boxes.unsqueeze(0)),
@@ -127,6 +130,8 @@ def caption(args, gen_kwargs, faster_rcnn, vsd, prefix, extral_id_0, predict_lis
         generated_sents = vsd.tokenizer.batch_decode(output, skip_special_tokens=True)
         print('input_ids_golden:',generated_sents)
 
+        #########################################################################################
+        # 预测方位提示词<extra_id_0>
         output = vsd.model.generate(
                             input_ids=input_ids_with_promt,
                             vis_inputs=(feature.unsqueeze(0), boxes.unsqueeze(0)),

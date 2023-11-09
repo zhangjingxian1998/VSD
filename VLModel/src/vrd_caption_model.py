@@ -109,7 +109,7 @@ class VLT5VRDCaption(VLT5):
         else:
             input_ids_with_vrd = batch['input_ids_with_vrd'].to(device)
             output_with_vrd = self(
-                input_ids=input_ids_with_vrd,
+                input_ids=input_ids_with_vrd,# <1-10>
                 vis_inputs=(vis_feats, vis_pos),
                 labels=lm_labels,
                 reduce_loss=reduce_loss
