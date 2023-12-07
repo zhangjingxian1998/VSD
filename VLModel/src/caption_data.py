@@ -407,7 +407,8 @@ class VRDCaptionFineTuneDataset(Dataset):
             self.vg_classes = vg_classes
 
         # data_info_path = dataset_dir.joinpath(f'spall/{split}.json')
-        data_info_path = dataset_dir.joinpath(f'VSDv1/{split}.json')
+        # data_info_path = dataset_dir.joinpath(f'VSDv1/{split}.json')
+        data_info_path = dataset_dir.joinpath(f'{args.data}/{split}.json')
         with open(data_info_path) as f:
             dataset = json.load(f)
 

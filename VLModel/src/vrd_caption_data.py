@@ -81,7 +81,8 @@ class VRDCaptionFineTuneDataset(Dataset):
             self.vg_classes = vg_classes
 
         # data_info_path = dataset_dir.joinpath(f'sp3000/{split}.json')
-        data_info_path = dataset_dir.joinpath(f'VSDv1/{split}.json')
+        # data_info_path = dataset_dir.joinpath(f'VSDv1/{split}.json')
+        data_info_path = dataset_dir.joinpath(f'{args.data}/{split}.json')
 
         with open(data_info_path) as f:
             dataset = json.load(f)
@@ -117,6 +118,7 @@ class VRDCaptionFineTuneDataset(Dataset):
                 n_images += 1
                 
         if self.verbose:
+            print(args.data)
             print(f"{self.source} has f'{n_images}' images")
             print(f"Loaded {len(data)} data from", split)
 

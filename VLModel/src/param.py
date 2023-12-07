@@ -167,6 +167,9 @@ def parse_args(parse=True, **optional_kwargs):
     parser.add_argument('--use_gold_rels', type=bool, default=False)
     parser.add_argument('--use_golden', action='store_true')
 
+    # EXTRA
+    parser.add_argument('--data', type=str, default='VSDv1')
+
     # Parse the arguments.
     if parse:
         args = parser.parse_args()
