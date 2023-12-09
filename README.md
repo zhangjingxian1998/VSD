@@ -84,6 +84,7 @@ bash test_b80.sh 1 --use_golden
 - The result files will save at test_16_res and test_80_res folder.
 
 ## result
+## VSDv1
 ### batch size 80
 |  Model| BLEU-4  | METEOR  | ROUGE | CIDEr| SPICE| Acc|
 |  ---- | ----  | ----  | ----  | ----  | ----  | ----  |
@@ -107,6 +108,18 @@ bash test_b80.sh 1 --use_golden
 | VLT5  | 54.44 |  43.03 | 78.82 | 484.02 | 68.92 | - |
 | VLT5-end2end  | 54.76 |  43.10 | 79.08 | 481.46 | 68.58 | 53.27 |
 | VLT5-end2end-golden  | 73.49 |  51.77 | 88.48 | 582.18 | 77.48 | 53.27 |
+
+## VSDv2
+### batch size 16
+|  Model| BLEU-4  | METEOR  | ROUGE | CIDEr| SPICE| Acc|
+|  ---- | ----  | ----  | ----  | ----  | ----  | ----  |
+| VLBART | 25.53 |  26.78 | 55.95 | 276.40 | 48.28 | - |
+| VLBART-end2end  |  |   |  |  |  |  |
+| VLBART-end2end-golden  |  |   |  |  |  |  |
+||
+| VLT5  | 25.83 |  26.88 | 55.79 | 277.87 | 48.88 | - |
+| VLT5-end2end  | 24.99 | 26.65  | 55.45 | 275.41 | 49.22 |  |
+| VLT5-end2end-golden  |  |   |  |  |  |  |
 ## Acknowledgement
 
 This repo is adapted from [VLT5](https://github.com/j-min/VL-T5).

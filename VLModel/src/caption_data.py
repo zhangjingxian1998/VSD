@@ -551,7 +551,7 @@ class VRDCaptionFineTuneDataset(Dataset):
                 input_tokens.append(subject_and_object[2])
 
             input_text = ' '.join(input_tokens)
-            
+
 
             if 't5' in self.args.tokenizer:
                 input_ids = self.tokenizer.encode(
