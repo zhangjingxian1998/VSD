@@ -15,3 +15,5 @@ test_16_res
 .gitignore
 *.zip
 *.log
+*.pyc
+.gitignore

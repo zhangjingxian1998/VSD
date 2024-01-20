@@ -115,7 +115,7 @@ def caption(args, gen_kwargs, faster_rcnn, vsd, prefix, extral_id_0, predict_lis
                             # output_attentions=True,
                             **gen_kwargs
                         )
-        generated_sents = vsd.tokenizer.batch_decode(output, skip_special_tokens=True)
+        generated_sents = vsd.tokenizer.batch_decode(output, skip_special_tokens=False)
         print('input_id:',generated_sents)
 
         #########################################################################################
@@ -127,7 +127,7 @@ def caption(args, gen_kwargs, faster_rcnn, vsd, prefix, extral_id_0, predict_lis
                             # output_attentions=True,
                             **gen_kwargs
                         )
-        generated_sents = vsd.tokenizer.batch_decode(output, skip_special_tokens=True)
+        generated_sents = vsd.tokenizer.batch_decode(output, skip_special_tokens=False)
         print('input_ids_golden:',generated_sents)
 
         #########################################################################################
@@ -139,7 +139,7 @@ def caption(args, gen_kwargs, faster_rcnn, vsd, prefix, extral_id_0, predict_lis
                             # output_attentions=True,
                             **gen_kwargs
                         )
-        generated_sents = vsd.tokenizer.batch_decode(output, skip_special_tokens=True)
+        generated_sents = vsd.tokenizer.batch_decode(output, skip_special_tokens=False)
         print('input_ids_with_promt:',generated_sents)
 
 
